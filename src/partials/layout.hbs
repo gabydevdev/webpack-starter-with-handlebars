@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>{{title}}</title>
+
+	{{! common used source styles and scripts }}
+	<link href="@styles/index.scss" rel="stylesheet">
+	<script src="@scripts/index.js" defer="defer"></script>
+
+	{{! blocks for page-specific styles and scripts }}
+	{{#block 'styles'}}{{/block}}
+	{{#block 'scripts'}}{{/block}}
+</head>
+
+<body>
+	{{> header}}
+
+	<div class="container">
+		{{! output content block defined in a parent template }}
+		{{#block 'content'}}{{/block}}
+	</div>
+
+	{{! if the block is not defined in a parent template, then output default content }}
+	{{#block 'custom_block'}}<p class="custom">default block content</p>{{/block}}
+
+	{{> footer }}
+</body>
+
+</html>
