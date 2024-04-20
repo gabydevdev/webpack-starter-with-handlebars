@@ -45,9 +45,3 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 ## License
 This project is open-sourced under the MIT license. See the [LICENSE](LICENSE) file for more information.
-npm run build
-```
-
-## License
-
-This project is open-sourced under the MIT license. See the [LICENSE](LICENSE) file for more information.
