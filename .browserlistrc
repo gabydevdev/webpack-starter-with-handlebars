@@ -1,0 +1,8 @@
+[production staging]
+>5%
+last 1 version
+
+[development]
+last 1 chrome version
+last 1 firefox version
+last 1 edge version
