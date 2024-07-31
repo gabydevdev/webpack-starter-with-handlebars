@@ -25,6 +25,7 @@ module.exports = {
 	plugins: [
 		new HtmlBundlerPlugin({
 			entry: Path.join(__dirname, 'src/pages/'),
+			entryFilter: /index\.hbs/, // render only entrypoint templates
 			preprocessor: 'handlebars',
 			preprocessorOptions: {
 				partials: ['src/partials/', 'src/pages/'],
@@ -59,12 +60,7 @@ module.exports = {
 			{
 				test: /\.s?css/i,
 				use: [
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true,
-						},
-					},
+					'css-loader',
 					'postcss-loader',
 					'sass-loader',
 				],
