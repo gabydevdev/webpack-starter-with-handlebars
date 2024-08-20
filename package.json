@@ -6,16 +6,18 @@
 		"lint:styles": "stylelint src/**/*.scss",
 		"lint:scripts": "eslint src/**/*js",
 		"start": "cross-env NODE_ENV=development webpack serve",
-		"build": "cross-env NODE_ENV=production webpack",
-		"watch": "cross-env NODE_ENV=development webpack watch"
+		"build": "cross-env NODE_ENV=production webpack"
 	},
 	"keywords": [
 		"webpack",
-		"startkit",
+		"webpack5",
+		"starter kit",
 		"frontend",
 		"es6",
 		"javascript",
-		"handlebars"
+		"handlebars",
+		"sass",
+		"scss"
 	],
 	"author": "gabriela",
 	"license": "MPL",
