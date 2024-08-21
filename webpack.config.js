@@ -12,22 +12,32 @@ module.exports = {
 	mode: isDev ? 'development' : 'production',
 	devtool: 'eval-cheap-source-map',
 	output: {
-		path: Path.resolve(__dirname, 'dist/')
+		path: Path.resolve(__dirname, 'build/'),
 	},
 	resolve: {
 		alias: {
+			'@fonts': Path.join(__dirname, 'src/fonts'),
+			'@images': Path.join(__dirname, 'src/images'),
 			'@scripts': Path.join(__dirname, 'src/scripts'),
 			'@styles': Path.join(__dirname, 'src/styles'),
-			'@images': Path.join(__dirname, 'src/images'),
 		},
 		modules: [Path.resolve(__dirname, 'node_modules'), 'node_modules'],
 	},
 	plugins: [
 		new HtmlBundlerPlugin({
 			entry: Path.join(__dirname, 'src/pages/'),
+			data: {
+				webRoot: '',
+				global: require(Path.join(__dirname, 'src/data/global.js')),
+			},
 			preprocessor: 'handlebars',
 			preprocessorOptions: {
 				partials: ['src/partials/', 'src/pages/'],
+				helpers: {
+					isActive: function() {
+
+					},
+				}
 			},
 			js: {
 				filename: 'js/[name].[contenthash:8].js',
@@ -78,7 +88,7 @@ module.exports = {
 	devServer: {
 		port: 8000,
 		open: false,
-		static: Path.resolve(__dirname, 'dist'),
+		static: Path.resolve(__dirname, 'build'),
 		watchFiles: {
 			paths: ['src/**/*.*'],
 			options: {

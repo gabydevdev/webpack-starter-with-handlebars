@@ -1,4 +1,16 @@
-<nav class="nav">
-	[<a href="/">Home</a>]
-	[<a href="/about">About</a>]
-</nav>
+{{#if global.menuItems}}
+	<nav class="header__navigation">
+		<ul>
+			{{#each global.menuItems}}
+				{{log url}} {{log title}}
+				{{log isActive}}
+
+				<li>
+					<a href="{{url}}" {{isActive}}>
+						{{title}}
+					</a>
+				</li>
+			{{/each}}
+		</ul>
+	</nav>
+{{/if}}

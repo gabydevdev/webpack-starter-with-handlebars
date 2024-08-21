@@ -4,15 +4,14 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>{{title}}</title>
+	<title>{{global.pageTitle}}</title>
 
-	{{! common used source styles and scripts }}
-	<link href="@styles/index.scss" rel="stylesheet">
-	<script src="@scripts/index.js" defer="defer"></script>
+	{{! global styles }}
+	<link rel="stylesheet" href="@styles/index.scss">
 
-	{{! blocks for page-specific styles and scripts }}
+	{{! block for page-specific styles }}
 	{{#block 'styles'}}{{/block}}
-	{{#block 'scripts'}}{{/block}}
+
 </head>
 
 <body>
@@ -23,10 +22,14 @@
 		{{#block 'content'}}{{/block}}
 	</div>
 
-	{{! if the block is not defined in a parent template, then output default content }}
-	{{#block 'custom_block'}}<p class="custom">default block content</p>{{/block}}
-
 	{{> footer }}
+
+	{{! global scripts }}
+	<script src="@scripts/index.js" defer></script>
+
+	{{! block for page-specific scripts }}
+	{{#block 'scripts'}}{{/block}}
+
 </body>
 
 </html>
