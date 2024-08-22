@@ -1,0 +1,19 @@
+{{assign pageTitle='About Us' currentPageUrl='/about.html'}}
+
+{{! define the block with page-specific styles }}
+{{#partial 'styles'}}
+	<link href="./about/about.scss" rel="stylesheet">
+{{/partial}}
+
+{{! define the block content: include the `about/content.hbs` partial }}
+{{#partial 'content'}}
+{{> about/content}}
+{{/partial}}
+
+{{! define the block with page-specific scripts }}
+{{!-- {{#partial 'scripts'}}
+	<script src="./about/about.js" defer></script>
+{{/partial}} --}}
+
+{{! extends the layout template with blocks defined above }}
+{{> layout}}

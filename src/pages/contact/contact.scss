@@ -1,0 +1,93 @@
+:root {
+	--background-body: #fff;
+	--text-main: #363636;
+}
+
+label {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+button,
+input,
+select,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+}
+
+input,
+select {
+	display: block;
+}
+
+button,
+select,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="checkbox"],
+input[type="range"],
+input[type="radio"] {
+	cursor: pointer;
+}
+
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	-webkit-appearance: none;
+
+	/* custom styles */
+	border: 1px solid var(--button--color, #9dff20);
+	background-color: var(--button--color, #9dff20);
+	color: var(--button--text, #000);
+
+	&:hover {
+		--button--color: var(--text-main);
+		--button--text: var(--button--color);
+
+		background-color: transparent;
+	}
+}
+
+input {
+	vertical-align: top;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	width: 1em;
+	height: 1em;
+}
+
+input[type="radio"] {
+	border-radius: 100%;
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+	-webkit-appearance: none;
+
+	/* custom styles */
+	border: 1px solid var(--input--color, var(--text-main));
+	background-color: none;
+	color: var(--input--text, var(--text-main));
+}
+
+textarea {
+	display: block;
+	margin-right: 0;
+	box-sizing: border-box;
+	resize: vertical;
+}
+
+form {
+	/* custom styles */
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap-md);
+	width: 100%;
+	max-width: 34em;
+}

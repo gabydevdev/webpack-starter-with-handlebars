@@ -1,16 +1,14 @@
-{{#if global.menuItems}}
-	<nav class="header__navigation">
+{{#if pages}}
+	<nav>
 		<ul>
-			{{#each global.menuItems}}
-				{{log url}} {{log title}}
-				{{log isActive}}
-
+			{{#each pages}}
 				<li>
-					<a href="{{url}}" {{isActive}}>
+					<a href="{{url}}">
 						{{title}}
 					</a>
 				</li>
 			{{/each}}
+
 		</ul>
 	</nav>
 {{/if}}
