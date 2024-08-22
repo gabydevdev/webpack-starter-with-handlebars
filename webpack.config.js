@@ -1,43 +1,63 @@
-const Path = require('path');
+const path = require('path');
+const fs = require('fs');
 const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
 require('dotenv').config({
-	path: Path.resolve(__dirname, `.env.${process.env.NODE_ENV}`),
+	path: path.resolve(__dirname, `.env.${process.env.NODE_ENV}`),
 });
+
+// Helper function to generate entries
+function generateEntries(directory) {
+	const files = fs.readdirSync(directory);
+	const entries = {};
+
+	files.forEach((file) => {
+		console.log(file);
+
+		const name = path.parse(file).name;
+		if (path.extname(file) == '.hbs') {
+			entries[name] = path.join(directory, file);
+		}
+	});
+
+	return entries;
+}
+
+// Set the directory path for pages
+const pagesDirectory = path.join(__dirname, 'src/pages/');
 
 module.exports = {
 	target: 'web',
 	mode: isDev ? 'development' : 'production',
 	devtool: 'eval-cheap-source-map',
 	output: {
-		path: Path.resolve(__dirname, 'build/'),
+		path: path.resolve(__dirname, 'build/'),
 	},
 	resolve: {
 		alias: {
-			'@fonts': Path.join(__dirname, 'src/fonts'),
-			'@images': Path.join(__dirname, 'src/images'),
-			'@scripts': Path.join(__dirname, 'src/scripts'),
-			'@styles': Path.join(__dirname, 'src/styles'),
+			'@fonts': path.join(__dirname, 'src/fonts'),
+			'@images': path.join(__dirname, 'src/images'),
+			'@scripts': path.join(__dirname, 'src/scripts'),
+			'@styles': path.join(__dirname, 'src/styles'),
 		},
-		modules: [Path.resolve(__dirname, 'node_modules'), 'node_modules'],
+		modules: [path.resolve(__dirname, 'node_modules'), 'node_modules'],
 	},
 	plugins: [
 		new HtmlBundlerPlugin({
-			entry: Path.join(__dirname, 'src/pages/'),
-			data: {
-				webRoot: '',
-				global: require(Path.join(__dirname, 'src/data/global.js')),
-			},
+			entry: 'src/pages/',
+			// entry: generateEntries(pagesDirectory),
+			data: 'src/data/global.json',
 			preprocessor: 'handlebars',
 			preprocessorOptions: {
 				partials: ['src/partials/', 'src/pages/'],
 				helpers: {
-					isActive: function() {
-
+					pageData: function (context) {
+						context = this;
+						console.log('context: ', context);
 					},
-				}
+				},
 			},
 			js: {
 				filename: 'js/[name].[contenthash:8].js',
@@ -45,16 +65,17 @@ module.exports = {
 			css: {
 				filename: 'css/[name].[contenthash:8].css',
 			},
-			verbose: true,
+			// verbose: true,
 		}),
 		function () {
 			console.log('NODE_ENV: ', process.env.NODE_ENV);
 			console.log('isDev: ', isDev);
 			console.log(
 				'Resolved .env path: ',
-				Path.resolve(__dirname, `.env.${process.env.NODE_ENV}`)
+				path.resolve(__dirname, `.env.${process.env.NODE_ENV}`)
 			);
 			console.log('BASE_URL: ', process.env.BASE_URL);
+			console.log('entries: ', generateEntries(pagesDirectory));
 		},
 	],
 	module: {
@@ -88,7 +109,7 @@ module.exports = {
 	devServer: {
 		port: 8000,
 		open: false,
-		static: Path.resolve(__dirname, 'build'),
+		static: path.resolve(__dirname, 'build'),
 		watchFiles: {
 			paths: ['src/**/*.*'],
 			options: {
