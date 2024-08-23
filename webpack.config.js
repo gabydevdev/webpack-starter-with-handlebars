@@ -46,8 +46,8 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlBundlerPlugin({
-			entry: 'src/pages/',
-			// entry: generateEntries(pagesDirectory),
+			// entry: 'src/pages/',
+			entry: generateEntries(pagesDirectory),
 			data: 'src/data/global.json',
 			preprocessor: 'handlebars',
 			preprocessorOptions: {
