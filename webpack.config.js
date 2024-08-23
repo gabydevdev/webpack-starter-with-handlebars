@@ -1,5 +1,6 @@
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -45,6 +46,7 @@ module.exports = {
 		modules: [path.resolve(__dirname, 'node_modules'), 'node_modules'],
 	},
 	plugins: [
+		new CleanWebpackPlugin(),
 		new HtmlBundlerPlugin({
 			// entry: 'src/pages/',
 			entry: generateEntries(pagesDirectory),
