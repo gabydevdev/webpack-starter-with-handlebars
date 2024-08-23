@@ -108,7 +108,7 @@ module.exports = {
 	},
 	devServer: {
 		port: 8000,
-		open: false,
+		open: true,
 		static: path.resolve(__dirname, 'build'),
 		watchFiles: {
 			paths: ['src/**/*.*'],
