@@ -1,6 +1,5 @@
 :root {
-	--background-body: #fff;
-	--text-main: #363636;
+	--background-body: #e2eaed;
 }
 
 label {
@@ -39,15 +38,12 @@ input[type="button"] {
 	-webkit-appearance: none;
 
 	/* custom styles */
-	border: 1px solid var(--button--color, #9dff20);
+	color: var(--button--text);
+	border: 1px solid;
 	background-color: var(--button--color, #9dff20);
-	color: var(--button--text, #000);
 
 	&:hover {
-		--button--color: var(--text-main);
-		--button--text: var(--button--color);
-
-		background-color: transparent;
+		--button--color: transparent;
 	}
 }
 

@@ -1,6 +1,6 @@
 :root {
-	// --text-main: #363636;
-	// --background-body: #fff;
+	--text-main: #000;
+	--background-body: #fff;
 
 	--gap-sm: 1rem;
 	--gap-md: 2rem;
@@ -11,11 +11,11 @@
 body {
 	margin: var(--spacing-vertical, 2.5rem) auto;
 	padding: 0 1rem;
-	font-size: 1.125rem; // ~18px
+	font-size: 1.25rem; // ~18px
 	line-height: 1.6;
 	word-wrap: break-word;
 	text-rendering: optimizeLegibility;
-	color: var(--text-main, #363636);
+	color: var(--text-main, #000);
 	background-color: var(--background-body, #fff);
 
 	/* custom styles */
@@ -25,6 +25,8 @@ body {
 }
 
 a {
+	color: inherit;
+
 	&::before {
 		content: "[";
 	}
@@ -34,24 +36,16 @@ a {
 	}
 }
 
-h1,
-h2,
-h3 {
-	line-height: 1.2;
-}
-
 img {
 	display: block;
-	height: auto;
-	max-width: 100%;
 	border-style: none;
 }
 
 embed,
-iframe,
 figure,
-object,
+img,
 video {
+	height: auto;
 	max-width: 100%;
 }
 
